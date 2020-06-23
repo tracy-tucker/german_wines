@@ -1,0 +1,2 @@
+class GemeranWines::CLI
+end
