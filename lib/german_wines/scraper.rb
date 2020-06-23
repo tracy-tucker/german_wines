@@ -1,0 +1,2 @@
+class GermanWines::Scraper
+end
