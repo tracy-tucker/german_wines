@@ -5,6 +5,7 @@ class GermanWines::CLI
     def start
         puts "Welcome to the German Wine App!"
         puts "Here are the top German wines that we have for you today:"
+        GermanWines::Scraper.scrape_wines
         # make a call to the Scraper class - scrape all the wines
         # list all the wines
         list_wines
