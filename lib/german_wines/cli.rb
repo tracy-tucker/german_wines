@@ -15,5 +15,6 @@ class GermanWines::CLI
     def list_wines
         GermanWines::Wine.all.each.with_index(1) do |wine, index|
             puts "#{index}. #{wine.name}"
+        end
     end
 end

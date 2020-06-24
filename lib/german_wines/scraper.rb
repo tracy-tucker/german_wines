@@ -1,8 +1,10 @@
 class GermanWines::Scraper
 
-    def scrape_wines
+    def self.scrape_wines
+        index_page = Nokogiri::HTML(open("https://www.trulyfinewine.com/germanwine"))
+        binding.pry
     end
 
-    def scrape_descriptions
+    def self.scrape_descriptions
     end
 end
