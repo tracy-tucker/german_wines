@@ -1,3 +1,5 @@
+require "nokogiri"
+
 require_relative "german_wines/version"
 require_relative "german_wines/cli"
 
