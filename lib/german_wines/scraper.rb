@@ -15,7 +15,6 @@ class GermanWines::Scraper
                 savings: wine_card.css(".savings").text
             }
             wine = GermanWines::Wine.new(attributes)
-            binding.pry
         end
     end
 
