@@ -1,5 +1,5 @@
 class GermanWines::CLI
-    attr_accessor :sorted_wines
+    attr_accessor :sorted_wines # setting the setter/getter method with attr_accessor
 
     #Top-level note: any time you have a different action, make it a different method
     
@@ -7,13 +7,14 @@ class GermanWines::CLI
     def start
         puts "Welcome to the German Wine App!"
         puts "Here are the top German wines that we have for you today:"
-        GermanWines::Scraper.scrape_wines
-        sort_wines
         # make a call to the Scraper class - scrape all the wines
+        GermanWines::Scraper.scrape_wines
+        #after scraping, we want to sort alphabetically
+        sort_wines
         # list all the wines
         list_wines
+        # ask for user input
         get_wine
-        # ask for input
         # call another method
     end
 
@@ -29,5 +30,7 @@ class GermanWines::CLI
 
     def get_wine
         puts "Please select a wine to see more information by choosing a number."
+        #input = gets.strip # return a copy of the user's input with leading and trailing whitespace removed using .strip
+
     end
 end
