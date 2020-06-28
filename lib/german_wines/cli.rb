@@ -9,6 +9,7 @@ class GermanWines::CLI
         # make a call to the Scraper class - scrape all the wines
         # list all the wines
         list_wines
+        get_wines
         # ask for input
         # call another method
     end
@@ -17,5 +18,9 @@ class GermanWines::CLI
         GermanWines::Wine.all.each.with_index(1) do |wine, index|
             puts "#{index}. #{wine.name}"
         end
+    end
+
+    def get_wines
+        puts "Please select a wine to see more information"
     end
 end
