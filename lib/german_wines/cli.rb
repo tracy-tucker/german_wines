@@ -28,18 +28,32 @@ class GermanWines::CLI
         end
     end
 
+    # def get_wine
+    #     puts "Please choose a number that corresponds to a wine."
+    #     input = gets.strip.to_i # return a copy of the user's input with leading and trailing whitespace removed using .strip. Converts that input to an integer
+    #     valid_input(input, @sorted_wines) ? show_wine(input) : (puts "Invalid selection. Try again.")
+    # end
+
     def get_wine
         puts "Please choose a number that corresponds to a wine."
-        input = gets.strip.to_i # return a copy of the user's input with leading and trailing whitespace removed using .strip. Converts that input to an integer
-        valid_input(input, @sorted_wines) ? show_wine(input) : (puts "Invalid selection. Try again.")
+        input = gets.strip
+        until valid_input(input, @sorted_wines) || input == "exit"
+            puts "Invalid selection. Please try again."
+            input = gets.strip.to_i
+        end
+        if input != "exit"
+            index = input.to_i - 1
+            wine = @sorted_wines[index]
+            show_wine(wine)
+        end
     end
 
     def valid_input(input, data)
         input.to_i <= data.length && input.to_i > 0
     end
 
-    def show_wine(selected_wine)
-        wine = @sorted_wines[selected_wine - 1]
+    def show_wine(wine)
+        # wine = @sorted_wines[selected_wine - 1]
         puts "More information about:"
         puts "- #{wine.name}"
         puts "- #{wine.url}"
