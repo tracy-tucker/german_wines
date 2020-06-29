@@ -59,6 +59,7 @@ class GermanWines::CLI
         puts "- #{wine.url}"
         puts "- #{wine.sub_title}"
         puts "- #{wine.price}"
+        puts "- #{wine.sale}"
         puts "- #{wine.list_price}"
         puts "- #{wine.savings}"
     end

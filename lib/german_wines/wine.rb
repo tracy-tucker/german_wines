@@ -1,5 +1,5 @@
 class GermanWines::Wine
-    attr_accessor :name, :url, :sub_title, :price, :list_price, :savings
+    attr_accessor :name, :url, :sub_title, :price, :sale, :list_price, :savings
 
     @@all = []
 

@@ -11,6 +11,7 @@ class GermanWines::Scraper
                 url: wine_card.css("a")[0]["href"],
                 sub_title: wine_card.css(".product-subtitle").text,
                 price: wine_card.css("span.price").text,
+                sale: wine_card.css(".sale").text,
                 list_price: wine_card.css(".retailprice").text,
                 savings: wine_card.css(".savings").text
             }
