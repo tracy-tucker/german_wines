@@ -19,17 +19,22 @@ class GermanWines::Scraper
         end
     end
 
-    def self.scrape_details(wine)
-        binding.pry
-        details_page = Nokogiri::HTML(open("https://www.trulyfinewine.com/#{wine.url}"))
-        details = details_page.css("#tab-1 p").text
-        learn_more = details_page.css("#tab-4 p").text
-        tour = details_page.css("#tab-5 p").text
-        #object oriented CLI
+    def self.scrape_details(wine_object)
+        details_page = Nokogiri::HTML(open("https://www.trulyfinewine.com/#{wine_object.url}"))
+        # desription = details_page.css("#tab-1 p").text
+        # learn_more = details_page.css("#tab-4 p").text
+        # tour = details_page.css("#tab-5 p").text
+        
+        #OBJECT ORIENTED CLI
         #instantiate new details
+        wo = GermanWines::Detail.new #wo stands for wine object
         #associate those details with this wine
-        #add these details to german_wines
         #set any detail attributes
+        wo.description = details_page.css("#tab-1 p").text
+        wo.learn_more = details_page.css("#tab-4 p").text
+        wo.tour = details_page.css("#tab-5 p").text
+        #add these details to german_wines
+        wine_object.add_details(wo)
         #a wine has_many details
 
     end

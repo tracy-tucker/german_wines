@@ -1,2 +1,0 @@
-class GermanWines::Description
-end

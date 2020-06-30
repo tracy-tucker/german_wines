@@ -28,12 +28,6 @@ class GermanWines::CLI
         end
     end
 
-    # def get_wine
-    #     puts "Please choose a number that corresponds to a wine."
-    #     input = gets.strip.to_i # return a copy of the user's input with leading and trailing whitespace removed using .strip. Converts that input to an integer
-    #     valid_input(input, @sorted_wines) ? show_wine(input) : (puts "Invalid selection. Try again.")
-    # end
-
     def get_wine
         puts "Please choose a number that corresponds to a wine."
         input = gets.strip
@@ -74,7 +68,7 @@ class GermanWines::CLI
             puts "Please type Y(yes) or N(no)"
             input = gets.strip.upcase
         end
-        if input == "Y"
+        if input == "Y" || input == "YES"
             GermanWines::Scraper.scrape_details(wine) #wine represents the wine object the user selected
         else
             puts "you ended"

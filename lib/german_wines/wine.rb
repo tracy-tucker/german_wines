@@ -1,5 +1,6 @@
 class GermanWines::Wine
     attr_accessor :name, :url, :sub_title, :price, :sale, :list_price, :savings
+    attr_reader :details #OO
 
     @@all = []
 
@@ -7,6 +8,7 @@ class GermanWines::Wine
         att_hash.each do |key, value|
             self.send("#{key}=", value)
         end
+        @details = [] #OO
     self.save
     end
 
@@ -17,5 +19,10 @@ class GermanWines::Wine
 
     def self.all
         @@all #returns all wines
+    end
+
+    def add_details(dets)
+        @details << dets
+        dets.wine = self
     end
 end
