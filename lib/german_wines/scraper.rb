@@ -25,5 +25,12 @@ class GermanWines::Scraper
         details = details_page.css("#tab-1 p").text
         learn_more = details_page.css("#tab-4 p").text
         tour = details_page.css("#tab-5 p").text
+        #object oriented CLI
+        #instantiate new details
+        #associate those details with this wine
+        #add these details to german_wines
+        #set any detail attributes
+        #a wine has_many details
+
     end
 end
