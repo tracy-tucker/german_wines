@@ -70,12 +70,12 @@ class GermanWines::CLI
     def want_more_info(wine)
         puts "Read more about this wine? (Y/N)"
         input = gets.strip.upcase
-        until input == "Y" || input == "N"
+        until ["Y", "N", "YES", "NO"].include?(input)
             puts "Please type Y(yes) or N(no)"
             input = gets.strip.upcase
         end
-        if input == "y"
-            GermanWines::Scraper.scrape_descriptions(wine) #wine represents the wine object the user selected
+        if input == "Y"
+            GermanWines::Scraper.scrape_details(wine) #wine represents the wine object the user selected
         else
             puts "you ended"
         end

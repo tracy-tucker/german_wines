@@ -19,6 +19,11 @@ class GermanWines::Scraper
         end
     end
 
-    def self.scrape_descriptions(wine)
+    def self.scrape_details(wine)
+        binding.pry
+        details_page = Nokogiri::HTML(open("https://www.trulyfinewine.com/#{wine.url}"))
+        details = details_page.css("#tab-1 p").text
+        learn_more = details_page.css("#tab-4 p").text
+        tour = details_page.css("#tab-5 p").text
     end
 end
