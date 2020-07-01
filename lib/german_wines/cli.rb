@@ -1,3 +1,5 @@
+require 'colorize'
+
 class GermanWines::CLI
     attr_accessor :sorted_wines # setting the setter/getter method with attr_accessor
 
@@ -21,25 +23,25 @@ class GermanWines::CLI
     end
 
     def greeting
-        puts "Welcome to the German Wine App!"
+        puts "Welcome to the German Wine App!".colorize(:magenta)
     end
 
     def menu
-        puts "If you would like to see a list of wines, type Y(yes)/N(no)"
-        puts "If you would like to exit, type 'exit'."
+        puts "If you would like to see a list of wines, type Y(yes)/N(no)".colorize(:yellow)
+        puts "If you would like to exit, type 'exit'.".colorize(:red)
 
         input = gets.strip.upcase
 
         case input
         when "Y", "YES"
-            puts "Here are the top German wines that we have for you today."
+            puts "Here are the top German wines that we have for you today.".colorize(:blue)
             sort_wines
             list_wines
             get_wine
         when 'EXIT', "N", "NO"
-            puts "Good-bye!"
+            puts "Good-bye!".colorize(:magenta)
         else
-            puts "Invalid selection. Please try again."
+            puts "Invalid selection. Please try again.".colorize(:red)
             menu #recursion
         end
     end
@@ -59,10 +61,10 @@ class GermanWines::CLI
     end
 
     def get_wine
-        puts "Please choose a number that corresponds to a wine. Or, type 'EXIT' to exit."
+        puts "Please choose a number that corresponds to a wine. Or, type 'EXIT' to exit.".colorize(:yellow)
         input = gets.strip
         until valid_input(input, @sorted_wines) || input == "exit"
-            puts "Invalid selection. Please try again."
+            puts "Invalid selection. Please try again.".colorize(:red)
             input = gets.strip.to_i
         end
         if input != "exit"
@@ -78,8 +80,7 @@ class GermanWines::CLI
 
     def show_wine(wine)
         # wine = @sorted_wines[selected_wine - 1]
-        puts "More information about:"
-        puts "- #{wine.name}"
+        puts "- #{wine.name}".colorize(:magenta)
         puts "- https://www.trulyfinewine.com/~#{wine.url}"
         puts "- #{wine.sub_title}"
         puts "- #{wine.price}"
@@ -93,19 +94,22 @@ class GermanWines::CLI
     end
 
     def want_more_details(wine)
-        puts "Read more about this wine? (Y/N)"
+        puts "Read more about this wine? (Y/N)".colorize(:yellow)
         input = gets.strip.upcase
         until ["Y", "N", "YES", "NO"].include?(input)
-            puts "Please type Y(yes) or N(no)"
+            puts "Please type Y(yes) or N(no)".colorize(:red)
             input = gets.strip.upcase
         end
         if input == "Y" || input == "YES"
-            puts "... fetching the details \n"
+            puts "... fetching the details \n".colorize(:blue)
             GermanWines::Scraper.scrape_details(wine) if wine.details == [] #wine represents the wine object the user selected
             wine.details.each do |wine|
-                puts "DESCRIPTION: #{wine.description} \n\n"
-                puts "LEARN MORE: #{wine.learn_more} \n\n"
-                puts "TOUR: #{wine.tour} \n\n"
+                puts "DESCRIPTION:".colorize(:blue)
+                puts "#{wine.description} \n\n"
+                puts "LEARN MORE:".colorize(:blue)
+                puts "#{wine.learn_more} \n\n"
+                puts "TOUR:".colorize(:blue)
+                "#{wine.tour} \n\n"
             end
         else
         end
