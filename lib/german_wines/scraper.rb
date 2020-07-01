@@ -36,6 +36,5 @@ class GermanWines::Scraper
         #add these details to german_wines
         wine_object.add_details(wo)
         #a wine has_many details
-
     end
 end

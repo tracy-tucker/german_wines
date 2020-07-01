@@ -50,18 +50,19 @@ class GermanWines::CLI
         # wine = @sorted_wines[selected_wine - 1]
         puts "More information about:"
         puts "- #{wine.name}"
-        puts "- #{wine.url}"
+        puts "- https://www.trulyfinewine.com/~#{wine.url}"
         puts "- #{wine.sub_title}"
         puts "- #{wine.price}"
         puts "- #{wine.sale}"
         puts "- #{wine.list_price}"
         puts "- #{wine.savings}"
         # ask user if they want more info
-        want_more_info(wine)
+        want_more_details(wine)
         puts "Please select a corresponding movie number, or type 'exit' to exit."
+        # ADD MENU HERE
     end
 
-    def want_more_info(wine)
+    def want_more_details(wine)
         puts "Read more about this wine? (Y/N)"
         input = gets.strip.upcase
         until ["Y", "N", "YES", "NO"].include?(input)
@@ -69,7 +70,13 @@ class GermanWines::CLI
             input = gets.strip.upcase
         end
         if input == "Y" || input == "YES"
-            GermanWines::Scraper.scrape_details(wine) #wine represents the wine object the user selected
+            puts "... fetching the details \n"
+            GermanWines::Scraper.scrape_details(wine) if wine.details == [] #wine represents the wine object the user selected
+            wine.details.each do |wine|
+                puts "DESCRIPTION: #{wine.description} \n\n"
+                puts "LEARN MORE: #{wine.learn_more} \n\n"
+                puts "TOUR: #{wine.tour} \n\n"
+            end
         else
             puts "you ended"
         end
