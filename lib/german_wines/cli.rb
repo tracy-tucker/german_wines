@@ -5,17 +5,47 @@ class GermanWines::CLI
     
     # start method should be the main flow that calls different methods
     def start
-        puts "Welcome to the German Wine App!"
-        puts "Here are the top German wines that we have for you today:"
+        # greet the user
+        greeting
         # make a call to the Scraper class - scrape all the wines
-        GermanWines::Scraper.scrape_wines
+        scrape_wines
+        # give the user options
+        menu
         #after scraping, we want to sort alphabetically
-        sort_wines
+        #sort_wines
         # list all the wines
-        list_wines
+        #list_wines
         # ask for user input and show a teaser
-        get_wine
+        #get_wine
         # call another method
+    end
+
+    def greeting
+        puts "Welcome to the German Wine App!"
+    end
+
+    def menu
+        puts "If you would like to see a list of wines, type Y(yes)/N(no)"
+        puts "If you would like to exit, type 'exit'."
+
+        input = gets.strip.upcase
+
+        case input
+        when "Y", "YES"
+            puts "Here are the top German wines that we have for you today."
+            sort_wines
+            list_wines
+            get_wine
+        when 'EXIT', "N", "NO"
+            puts "Good-bye!"
+        else
+            puts "Invalid selection. Please try again."
+            menu #recursion
+        end
+    end
+
+    def scrape_wines
+        GermanWines::Scraper.scrape_wines
     end
 
     def sort_wines
@@ -29,7 +59,7 @@ class GermanWines::CLI
     end
 
     def get_wine
-        puts "Please choose a number that corresponds to a wine."
+        puts "Please choose a number that corresponds to a wine. Or, type 'EXIT' to exit."
         input = gets.strip
         until valid_input(input, @sorted_wines) || input == "exit"
             puts "Invalid selection. Please try again."
@@ -58,7 +88,7 @@ class GermanWines::CLI
         puts "- #{wine.savings}"
         # ask user if they want more info
         want_more_details(wine)
-        puts "Please select a corresponding movie number, or type 'exit' to exit."
+        menu 
         # ADD MENU HERE
     end
 
@@ -78,7 +108,6 @@ class GermanWines::CLI
                 puts "TOUR: #{wine.tour} \n\n"
             end
         else
-            puts "you ended"
         end
     end
 end
